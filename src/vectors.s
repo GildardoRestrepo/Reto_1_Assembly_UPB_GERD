@@ -19,8 +19,8 @@
 
     .section .vectors, "a"      /* sección "solo lectura", va al inicio de FLASH */
     .align  2                   /* alineación a 4 bytes                          */
-    .global __vectors
-__vectors:
+    .global _vectors            /* nombre EXIGIDO por el linker de SEGGER        */
+_vectors:
     .word   0x20020000          /* [0x00] SP inicial = tope de la SRAM (128 KB)  */
     .word   Reset_Handler       /* [0x04] Reset  (definido en main.s)            */
     .word   Default_Handler     /* [0x08] NMI                                    */
