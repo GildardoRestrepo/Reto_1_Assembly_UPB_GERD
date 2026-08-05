@@ -1,0 +1,12 @@
+# Salida de build de Segger Embedded Studio
+Output/
+*.o
+*.d
+*.elf
+*.map
+*.jlink
+*.emSession
+
+# Sistema
+Thumbs.db
+.DS_Store
