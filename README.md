@@ -12,18 +12,21 @@ temporización **solo con SysTick en polling**, y **debouncing por software**.
 
 ## Hardware objetivo
 - MCU: **STM32F407VET6** (Cortex-M4), placa "Black".
-- 8 LEDs discretos externos + 1 pulsador N.O. en protoboard.
+- 8 LEDs discretos externos + 1 pulsador N.O. en protoboard. Se usa una matriz de leds + pulsador de la tarjeta.
 - Reloj: **HSI 16 MHz** (por defecto tras reset, sin PLL).
 
 ## Estructura del repositorio
 ```
-src/    -> código ensamblador (.s), un archivo por responsabilidad
-docs/   -> documentación técnica exigida por la rúbrica
+
+apuntes_clases/  -> apuntes .md de las clases vistas (desarrollados en Obisidian)
 datasheets/ -> RM0090 (reference manual) y apuntes de clase
+documentacion/   -> documentación por etapas del desarrollo del proyecto
+segger/  -> Proyecto generado en Segger
+src/    -> código ensamblador (.s), un archivo por responsabilidad. 
+
 ```
 
-## Cómo compilar y flashear
-Debido a que Segger Embedded Studio no lee el ST-Link de esta placa, el flujo es:
+## Compilación y flasheo
 
 1. **Build** en Segger Embedded Studio → genera el binario en `Output/.../`
    (configurar la salida para producir `.hex`).
@@ -33,7 +36,7 @@ Debido a que Segger Embedded Studio no lee el ST-Link de esta placa, el flujo es
 
 ## Estado
 - [x] Fase 0 — Infraestructura del repositorio
-- [ ] Fase 1 — Arranque bare-metal: encender 1 LED (valida el toolchain)
+- [ ] Fase 1 — Arranque bare-metal: encender 1 LED (validando toolchain)
 - [ ] Fase 2 — Barrido de 8 LEDs con SysTick
 - [ ] Fase 3 — Lectura del botón + debouncing
 - [ ] Fase 4 — Lógica del juego (acierto / fallo / reinicio)

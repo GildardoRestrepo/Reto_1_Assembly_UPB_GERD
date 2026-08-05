@@ -1,6 +1,6 @@
 # Tabla de registros configurados
 
-> Deliverable de la rúbrica. Se va llenando a medida que avanzan las fases.
+> Deliverable. Se va llenando a medida que avanzan las fases.
 > Fuente de direcciones: **RM0090** (Reference Manual STM32F407).
 
 Bases de referencia:
