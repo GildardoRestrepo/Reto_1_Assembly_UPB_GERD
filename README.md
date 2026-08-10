@@ -2,8 +2,8 @@
 
 ---
 
-Autor: Gildardo E. Restrepo
-Curso: Microcontroladores
+Autor: Gildardo E. Restrepo, 
+Curso: Microcontroladores, 
 Semestre: 2026-02
 
 ---
