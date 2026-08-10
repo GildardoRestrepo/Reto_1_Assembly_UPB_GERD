@@ -20,7 +20,7 @@
     .equ GPIO_MODER,  0x00         /* offset MODER (modo de cada pin)           */
     .equ GPIO_ODR,    0x14         /* offset ODR   (salida de datos)            */
 
-    .equ STEP_MS, 150              /* <-- RETO B: velocidad del barrido (ms)    */
+    .equ STEP_MS, 50              /* <-- RETO B: velocidad del barrido (ms)    */
 
 /* systick_init y delay_ms viven en systick.s; el linker resuelve el 'bl'.     */
 
@@ -49,7 +49,7 @@ Reset_Handler:
     /* 3) Arrancar la base de tiempo (systick.s) */
     bl    systick_init
 
-    /* 4) Barrido: bit caminante sobre PD0..PD7
+    /* 4) Barrido: bit caminante sobre PD0..PD7 con rebote
      *    r4 = patrón del LED encendido ; r5 = base de GPIOD (se conservan
      *    porque delay_ms solo usa r0-r2). */
     ldr   r5, =GPIOD_BASE
@@ -61,5 +61,12 @@ barrido:
     lsls  r4, r4, #1              /* desplaza el bit -> siguiente LED          */
     cmp   r4, #0x100              /* ¿ya pasó de PD7 (0x80)?                    */
     bne   barrido
-    movs  r4, #0x01               /* sí -> reinicia el ciclo en PD0            */
-    b     barrido
+    movs  r4, #0x40               /* sí -> reinicia el ciclo en PD6            */
+inverso:
+    str   r4, [r5, #GPIO_ODR]
+    movs  r0, #STEP_MS
+    bl    delay_ms
+    lsrs  r4, r4, #1         /* desplaza a la DERECHA -> LED anterior        */
+    cmp   r4, #0x01          /* ¿llegó a PD0?                                */
+    bne   inverso            /* no -> sigue bajando                          */
+    b     barrido            /* sí -> r4=0x01; el 'barrido' mostrará PD0     */
