@@ -24,16 +24,16 @@ SysTick se fijará al reloj del procesador (16 MHz).
 
 | Recurso        | Pin(es) propuesto | ¿Confirmado? | Justificación |
 |----------------|-------------------|--------------|---------------|
-| 8 LEDs         | PD0–PD7           |       X     | *(completa)*  |
-| Pulsador N.O.  | *(por definir)*   |           | *(completa)*  |
-| LED objetivo   | central (PD3 o PD4)|         | *(completa)*  |
+| 8 LEDs         | PD0–PD7           |       X     | Pines contiguos - Numeración continua  |
+| Pulsador N.O.  | PE3 (botón K1)   |       X    | Facilidad de acceso - Botón en la esquina  |
+| LED objetivo   | PD3 |     X    | LED central  |
 
 
-## 3. Pulsador N.O. — resistencia interna *(PENDIENTE)*
+## 3. Pulsador K1
 
-Dos opciones:
-- **Pull-up interno** + botón a GND → reposo lee `1`, pulsado lee `0`.
-- **Pull-down interno** + botón a VCC → reposo lee `0`, pulsado lee `1`.
+Opción:
+- **Pull-up interno** -> botón a GND → reposo lee `1`, pulsado lee `0`.  
 
-## 4. Estrategia de debouncing *(se define en Fase 3)*
+
+## 4. Estrategia de debouncing
 

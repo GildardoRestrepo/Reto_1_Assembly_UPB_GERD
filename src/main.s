@@ -48,7 +48,8 @@ Reset_Handler:
     /* 3) Arrancar la base de tiempo (systick.s) */
     bl    systick_init
 
-    /* 4) Barrido: bit caminante sobre PD0..PD7 con rebote
+
+/* 4) Barrido: bit caminante sobre PD0..PD7 con rebote
      *    r4 = patrón del LED encendido ; r5 = base de GPIOD (se conservan
      *    porque delay_ms solo usa r0-r2). */
     ldr   r5, =GPIOD_BASE

@@ -55,6 +55,7 @@
     </folder>
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="../src/button.s" />
       <file file_name="../src/main.s" />
       <file file_name="../src/systick.s" />
       <file file_name="../src/vectors.s" />
