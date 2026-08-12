@@ -22,8 +22,8 @@ flowchart LR
     end
     K["Pulsador K1 (N.O.)"]
     G[("GND")]
-    PD -->|"R limitadora"| C
-    R --> G
+    PD --> C
+    R --> |"R limitadora"| G
     PE --- K
     K --> G
 ```
