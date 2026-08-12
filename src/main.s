@@ -28,7 +28,6 @@
     .equ BLINK_N,   3              /* número de parpadeos                      */
     .equ FREEZE_MS, 2000           /* congelamiento por fallo (2 s)            */
 
-/* systick_* / button_* / delay_ms viven en otros .s; el linker los resuelve.  */
 
     .section .text
     .thumb_func
@@ -62,7 +61,8 @@ Reset_Handler:
 
 /* ======================= BUCLE PRINCIPAL DEL JUEGO =======================
  * r4 = patrón del LED encendido ; r5 = base de GPIOD.
- * (r4/r5/r6 se conservan porque delay_ms/button_read solo usan r0-r2.)      */
+ * (r4/r5/r6 se conservan, delay_ms/button_read solo usan r0-r2.)      */
+
 reiniciar:
     movs  r4, #0x01               /* arranca la partida en PD0                */
 
@@ -71,7 +71,7 @@ barrido:
     str   r4, [r5, #GPIO_ODR]     /* muestra el LED actual                    */
     movs  r0, #STEP_MS
     bl    delay_ms
-    bl    button_read             /* ¿K1 pulsado? (con antirrebote)           */
+    bl    button_read             /* ¿K1 pulsado?          */
     cmp   r0, #1
     beq   evaluar                 /* sí -> evaluar (r4 = LED que estaba activo)*/
     lsls  r4, r4, #1

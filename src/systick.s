@@ -1,19 +1,17 @@
 /* ============================================================================
- * systick.s  --  Base de tiempo por SysTick (polling, SIN interrupciones)
+ * systick.s  --  Base de tiempo por SysTick
  * ----------------------------------------------------------------------------
- * Expone dos rutinas globales para el resto del proyecto (patrón multi-.s):
+ * Se definen dos funciones globales para el resto del proyecto (patrón multi-.s):
  *     systick_init : configura SysTick para un "tick" de 1 ms.
  *     delay_ms     : espera r0 milisegundos sondeando la bandera COUNTFLAG.
  *
- * Reloj: HSI 16 MHz. Fuente de SysTick = reloj del procesador (CLKSOURCE = 1).
+ * Reloj: HSI 16 MHz. Fuente de SysTick = Reloj del procesador (CLKSOURCE = 1).
  *
- * Cálculo del valor de recarga (para tu documentación de tiempos):
- *     T_tick = (RELOAD + 1) / f_clk
- *     Para T_tick = 1 ms y f_clk = 16 MHz:
+ * Cálculo del valor de recarga:
+ *     
+ *     Para Retardo deseado (T_tick) = 1 ms y f_clk = 16 MHz:
  *     RELOAD = f_clk * T_tick - 1 = 16e6 * 1e-3 - 1 = 15999   (= 0x3E7F)
  *
- * SysTick es un contador DESCENDENTE de 24 bits: carga RELOAD, baja hasta 0,
- * activa COUNTFLAG, recarga y repite. Máx. RELOAD = 0xFFFFFF (16 777 215).
  * ==========================================================================*/
 
     .syntax unified
@@ -25,7 +23,7 @@
     .equ STK_LOAD,  0xE000E014   /* RVR : valor de recarga                     */
     .equ STK_VAL,   0xE000E018   /* CVR : valor actual del contador            */
 
-    .equ RELOAD_1MS, 15999       /* <-- RETO A: verifica tú este número        */
+    .equ RELOAD_1MS, 15999
 
     .section .text
 
@@ -51,8 +49,7 @@ systick_init:
 
 /* ---------------------------------------------------------------------------
  * delay_ms : espera (r0) milisegundos y retorna.
- *   Entrada : r0 = número de milisegundos.
- *   Usa r0-r2 (todos scratch); NO toca r4-r11, así el llamante los conserva.
+ *   Entrada : r0 = número de ms.  
  *
  *   COUNTFLAG = bit 16 de STK_CTRL. Se pone a 1 cuando el contador llega a 0,
  *   y se limpia AUTOMÁTICAMENTE al leer STK_CTRL. Cada bandera = 1 ms.
@@ -63,11 +60,11 @@ delay_ms:
     ldr   r1, =STK_CTRL
 delay_loop:
     cmp   r0, #0
-    beq   delay_done             /* ya contamos todos los ms -> salir          */
+    beq   delay_done             /* ya se contaron todos los ms -> salir          */
 delay_wait:
     ldr   r2, [r1]              /* leer CTRL (esta lectura limpia COUNTFLAG)   */
     tst   r2, #(1 << 16)        /* ¿COUNTFLAG activa?                          */
-    beq   delay_wait           /* aún no -> seguir sondeando                   */
+    beq   delay_wait           /* Ni -> seguir sondeando                   */
     subs  r0, r0, #1            /* pasó 1 ms -> descuenta                       */
     b     delay_loop
 delay_done:
