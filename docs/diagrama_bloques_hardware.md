@@ -36,7 +36,7 @@ flowchart LR
 | Retorno LEDs | — | común | Fila F2 → GND |
 | Entrada botón | PE3 | entrada con pull-up interno | Pulsador K1 (N.O.); otro extremo a GND |
 
-## 3. Notas eléctricas  [PERSONALIZA]
+## 3. Notas eléctricas
 
 - **Resistencia limitadora**: Resistencia de ~330 Ω al cátodo común de la fila de LEDs, para ~10 mA a 3.3 V. Puesto que el juego
   enciende **un solo LED a la vez** no hay otro tipo de caidas de tensión, de modo que el brillo es el mismo.
