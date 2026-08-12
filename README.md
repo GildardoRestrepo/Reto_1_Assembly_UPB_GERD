@@ -48,5 +48,6 @@ src/    -> código ensamblador (.s), un archivo por responsabilidad.
 - [x] Fase 2 — Barrido de 8 LEDs con SysTick.                                              
 - [X] Fase 2.1 - Configurar rebote del barrido de LEDs como adicional al juego.
 - [X] Fase 3 — Lectura del botón + debouncing
-- [ ] Fase 4 — Lógica del juego (acierto / fallo / reinicio)
-- [ ] Fase 5 — Documentación final (tabla de registros, cálculos, diagramas)
+- [X] Fase 4 — Lógica del juego (acierto / fallo / reinicio)
+- [X] Fase 5 — Documentación final (tabla de registros, cálculos, diagramas)
+- [X] Fase 6 - Documentación respecto al uso de IA

@@ -1,12 +1,12 @@
 # Tabla de registros configurados
 
-> Deliverable. Se va llenando a medida que avanzan las fases.
-> Fuente de direcciones: **RM0090** (Reference Manual STM32F407).
+> Deliverable: Se va llenando a medida que avanzan las fases.
+> Fuente de direcciones: docs/**RM0090** (Reference Manual STM32F407).
 
 Bases de referencia:
 - `RCC`     = `0x40023800`
 - `GPIOA`   = `0x40020000`, y cada puerto siguiente +`0x400` (GPIOD = `0x40020C00`, GPIOE = `0x40021000`).
-- `SysTick` = `0xE000E010` (dentro del núcleo Cortex-M4, no en AHB1; por eso no lleva reloj de RCC).
+- `SysTick` = `0xE000E010` 
 
 ## Fase 1 — Encender un LED (PD0)
 
