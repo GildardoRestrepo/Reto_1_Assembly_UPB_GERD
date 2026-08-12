@@ -1,8 +1,8 @@
 /* ============================================================================
- * main.s  --  Fase 2.1: barrido de los 8 LEDs con temporización por SysTick
+ * main.s  --  Fase 4: Lógica de juego (acierto / fallo / reinicio)
  * ----------------------------------------------------------------------------
  * Un único LED encendido a la vez, desplazándose de PD0 hacia PD7 para luego rebotar.
- * El tiempo entre pasos es CONSTANTE y lo da SysTick por sondeo
+ * El tiempo entre pasos es CONSTANTE y lo da SysTick por sondeo.
  *
  * Hardware: 8 columnas de la matriz LED 8x8 -> PD0..PD7 (una fila a GND).
  * Como solo hay un LED encendido a la vez, escribir el patrón completo en ODR
